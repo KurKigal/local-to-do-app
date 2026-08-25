@@ -1,0 +1,27 @@
+<!-- Merge into android/app/src/main/AndroidManifest.xml -->
+
+<!-- Inside MainActivity <activity> -->
+<intent-filter>
+    <action android:name="es.antonborri.home_widget.action.LAUNCH" />
+</intent-filter>
+
+<!-- Inside <application> -->
+<receiver
+    android:name="com.emirhankeser.flowtask.FlowTaskWidgetProvider"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/flowtask_widget_info" />
+</receiver>
+
+<receiver
+    android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="es.antonborri.home_widget.action.BACKGROUND" />
+    </intent-filter>
+</receiver>

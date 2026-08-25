@@ -1,0 +1,39 @@
+<!--
+MERGE THESE ENTRIES INTO:
+android/app/src/main/AndroidManifest.xml
+
+1) Inside the existing MainActivity <activity> add:
+-->
+
+<intent-filter>
+    <action android:name="es.antonborri.home_widget.action.LAUNCH" />
+</intent-filter>
+
+<!--
+2) Inside <application> add:
+-->
+
+<receiver
+    android:name=".FlowTaskWidgetProvider"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+
+    <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/flowtask_widget_info" />
+</receiver>
+
+<receiver
+    android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="es.antonborri.home_widget.action.BACKGROUND" />
+    </intent-filter>
+</receiver>
+
+<!--
+home_widget >= 0.8.1 no longer requires the old background service
+for Android interactive widget clicks.
+-->
